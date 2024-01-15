@@ -1,20 +1,45 @@
 // pages/index.tsx
 import React from 'react';
 import dynamic from 'next/dynamic';
-import styles from './page.module.css'
+import styles from './assets/page.module.css'
+import BearCounter from './components/BearCounter';
 
-const BearCounter = dynamic(() => import('./components/BearCounter'), { 
-  ssr: true,
+const BearCounterServer = dynamic(() => import('./components/BearCounter'), { 
+  ssr: false,
   loading: () => <Skeleton />
 });
 
+async function getExample () {
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Harol R.");
+    }, 1000);
+  });
+};
+const HomePage  = async () => {
+  const exampleData = await getExample() as string;
 
-const HomePage: React.FC = () => {
   return (
     <main className={styles.main}>
+      <div style={{width: "100%"}}>
+
+        <div className={styles.description}>
+          <h1>Carga de componente de lado servidor</h1>
+          <BearCounter />
+        </div>
+
+        <br />
+
+        <div className={styles.description}>
+          <h1>Carga de componente de lado cliente </h1>
+          <BearCounterServer />
+        </div>
+
+      </div>
+
       <div className={styles.description}>
-        <h1>Welcome to Bear Counter!</h1>
-        <BearCounter />
+        <h1>Carga de datos de lado servidor</h1>
+        <p>-{exampleData}</p>
       </div>
     </ main>
   );

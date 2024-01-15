@@ -1,9 +1,33 @@
 import Image from 'next/image'
 import styles from '@/shared/styles/mainpage.module.css'
 
+import BearCounter from './dashboard/components/BearCounter';
+import dynamic from 'next/dynamic';
+
+const BearCounterServer = dynamic(() => import('./dashboard/components/BearCounter'), { 
+  ssr: false,
+  loading: () => <Skeleton />
+});
+
+
 export default function Home() {
   return (
     <main className={styles.main}>
+      <div style={{width: "100%"}}>
+
+        <div className={styles.description}>
+          <h1>Carga de componente de lado servidor</h1>
+          <BearCounter />
+        </div>
+
+        <br />
+
+        <div className={styles.description}>
+          <h1>Carga de componente de lado cliente </h1>
+          <BearCounterServer />
+        </div>
+
+      </div>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -93,3 +117,9 @@ export default function Home() {
     </main>
   )
 }
+
+const Skeleton = () => (
+  <div>
+    <p>Cargando...</p>
+  </div>
+);

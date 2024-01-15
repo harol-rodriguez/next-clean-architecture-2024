@@ -4,7 +4,7 @@ import type {} from '@redux-devtools/extension' // required for devtools typing
 
 const useCountStore = create<CountInterface>()(
   devtools(
-    persist(
+    // persist(
       (set) => ({
         count: 0,
         increase: (by) => set((state) => ({ count: state.count + by })),
@@ -12,7 +12,7 @@ const useCountStore = create<CountInterface>()(
       {
         name: 'count-storage',
       },
-    ),
+    // ),
   ),
 )
 
