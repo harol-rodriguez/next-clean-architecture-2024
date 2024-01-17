@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import styles from '@/shared/styles/mainpage.module.css'
 
-import BearCounter from './dashboard/components/BearCounter';
+import BearCounter from './dashboard/_/components/BearCounter';
 import dynamic from 'next/dynamic';
 
-const BearCounterServer = dynamic(() => import('./dashboard/components/BearCounter'), { 
+const BearCounterServer = dynamic(() => import('./dashboard/_/components/BearCounter'), { 
   ssr: false,
   loading: () => <Skeleton />
 });

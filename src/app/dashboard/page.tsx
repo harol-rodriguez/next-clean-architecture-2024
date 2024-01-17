@@ -1,10 +1,10 @@
 // pages/index.tsx
 import React from 'react';
 import dynamic from 'next/dynamic';
-import styles from './assets/page.module.css'
-import BearCounter from './components/BearCounter';
+import styles from './_/assets/page.module.css'
+import BearCounter from './_/components/BearCounter';
 
-const BearCounterServer = dynamic(() => import('./components/BearCounter'), { 
+const BearCounterServer = dynamic(() => import('./_/components/BearCounter'), { 
   ssr: false,
   loading: () => <Skeleton />
 });
