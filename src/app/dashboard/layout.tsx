@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@/shared/styles/globals.css'
 import Head from 'next/head'
+import { Box } from '@chakra-ui/react'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,13 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <nav>
-        <a href="/">Home</a>
-        <a href="#">Actual</a>
-      </nav>
-      <section>
-      {children}
-      </section>
+      <Box as="nav">
+        <Link href="/">Home</Link>
+        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/dashboard/account">Account</Link>
+      </Box>
+
+      <Box as="section">
+        {children}
+      </Box>
     </>
   )
 }

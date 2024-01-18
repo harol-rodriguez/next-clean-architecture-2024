@@ -17,7 +17,7 @@ async function getExample () {
   });
 };
 const HomePage  = async () => {
-  const exampleData = await getExample() as string;
+  // const exampleData = await getExample() as string;
 
   return (
     <main className={styles.main}>
@@ -39,7 +39,7 @@ const HomePage  = async () => {
 
       <div className={styles.description}>
         <h1>Carga de datos de lado servidor</h1>
-        <p>-{exampleData}</p>
+        {/* <p>-{exampleData}</p> */}
       </div>
     </ main>
   );

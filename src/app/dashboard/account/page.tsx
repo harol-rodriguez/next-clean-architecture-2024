@@ -1,6 +1,6 @@
 // pages/index.tsx
 import React from 'react';
-import styles from '../assets/page.module.css'
+import styles from '../_/assets/page.module.css'
 
 async function getExample () {
   return await new Promise((resolve) => {

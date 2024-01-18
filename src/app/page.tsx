@@ -1,125 +1,47 @@
-import Image from 'next/image'
-import styles from '@/shared/styles/mainpage.module.css'
-
-import BearCounter from './dashboard/_/components/BearCounter';
-import dynamic from 'next/dynamic';
-
-const BearCounterServer = dynamic(() => import('./dashboard/_/components/BearCounter'), { 
-  ssr: false,
-  loading: () => <Skeleton />
-});
-
+"use client";
+import {
+  Box,
+  Button,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  Image,
+  useColorMode,
+  useColorModeValue
+} from '@chakra-ui/react';
 
 export default function Home() {
+  const { toggleColorMode } = useColorMode();
+  const bgColor = useColorModeValue('gray.100', 'gray.700');
+  const textColor = useColorModeValue('gray.800', 'gray.200');
+
   return (
-    <main className={styles.main}>
-      <div style={{width: "100%"}}>
-
-        <div className={styles.description}>
-          <h1>Carga de componente de lado servidor</h1>
-          <BearCounter />
-        </div>
-
-        <br />
-
-        <div className={styles.description}>
-          <h1>Carga de componente de lado cliente </h1>
-          <BearCounterServer />
-        </div>
-
-      </div>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
+    <Box bg={bgColor} minHeight="100vh" p={5}>
+      <VStack spacing={8} align="center">
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src="/vercel.svg"
+          alt="Logo"
+          boxSize="100px"
         />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <Heading as="h1" size="2xl" textAlign="center">
+          Bienvenido a Mi Aplicación
+        </Heading>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        <Text fontSize="xl" color={textColor}>
+          Esta es una página de bienvenida simple utilizando Chakra UI en Next.js.
+        </Text>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <HStack spacing={4}>
+          <Button colorScheme="blue" onClick={() => alert('Haz clic en el botón!')}>
+            Clic Aquí
+          </Button>
+          <Button colorScheme="teal" onClick={toggleColorMode}>
+            Cambiar Modo de Color
+          </Button>
+        </HStack>
+      </VStack>
+    </Box>
+  );
 }
-
-const Skeleton = () => (
-  <div>
-    <p>Cargando...</p>
-  </div>
-);
